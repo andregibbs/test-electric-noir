@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import TvShows from './TvShows';
+import { TvShowsData, TvShow } from './types';
+import tvShowsJson from './data/season-data.json';
+import pricesJson from './data/season-pricing-data.json';
 
 function App() {
+  const [data, setData] = useState<TvShowsData | null>(null);
+
+  useEffect(() => {
+    const updatedTvShows: TvShow[] = tvShowsJson.map(
+      (tvShow: TvShow) => {
+        const matchingPrice = pricesJson.find(
+          (item: { id: number }) => item.id === tvShow.id
+        );
+        return matchingPrice
+          ? { ...tvShow, Prices: matchingPrice.prices }
+          : tvShow;
+      }
+    );
+
+    const updatedData: TvShowsData = {
+      ...tvShowsJson,
+      tvShows: updatedTvShows,
+    };
+
+    setData(updatedData);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>TV Shows</h1>
+      {data ? <TvShows data={data} /> : <p>Loading data...</p>}
     </div>
   );
 }

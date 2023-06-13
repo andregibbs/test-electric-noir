@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "theme": "Crime",
+    "title": "The Dark Streets",
+    "image": "./img/season-posters/the-dark-streets.png",
+    "episodes": [
+      {
+        "id": 1,
+        "title": "The Crime Begins",
+        "image": "./img/episode-posters/the-crime-begins.png"
+      },
+      {
+        "id": 3,
+        "title": "Unveiling Secrets",
+        "image": "./img/episode-posters/unveiling-secrets.png"
+      },
+      {
+        "id": 6,
+        "title": "Life or Death",
+        "image": "./img/episode-posters/life-or-death.png"
+      },
+      {
+        "id": 9,
+        "title": "Betrayal",
+        "image": "./img/episode-posters/betrayal.png"
+      },
+      {
+        "id": 12,
+        "title": "Survival Instincts",
+        "image": "./img/episode-posters/survival-instincts.png"
+      },
+      {
+        "id": 15,
+        "title": "Final Showdown",
+        "image": "./img/episode-posters/final-showdown.png"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "theme": "Emergency",
+    "title": "Code Red",
+    "image": "./img/season-posters/code-red.png",
+    "episodes": [
+      {
+        "id": 2,
+        "title": "Emergency Call",
+        "image": "./img/episode-posters/emergency-call.png"
+      },
+      {
+        "id": 4,
+        "title": "Under Pressure",
+        "image": "./img/episode-posters/under-pressure.png"
+      },
+      {
+        "id": 8,
+        "title": "Race Against Time",
+        "image": "./img/episode-posters/race-against-time.png"
+      },
+      {
+        "id": 10,
+        "title": "Emergency Response",
+        "image": "./img/episode-posters/emergency-response.png"
+      },
+      {
+        "id": 13,
+        "title": "Truth and Consequences",
+        "image": "./img/episode-posters/truth-and-consequences.png"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "theme": "Crime",
+    "title": "Shadows of Deception",
+    "image": "./img/season-posters/shadows-of-deception.png",
+    "episodes": [
+      {
+        "id": 5,
+        "title": "A Trail of Clues",
+        "image": "./img/episode-posters/a-trail-of-clues.png"
+      },
+      {
+        "id": 7,
+        "title": "In Pursuit of Justice",
+        "image": "./img/episode-posters/in-pursuit-of-justice.png"
+      },
+      {
+        "id": 11,
+        "title": "The Mastermind Revealed",
+        "image": "./img/episode-posters/the-mastermind-revealed.png"
+      },
+      {
+        "id": 14,
+        "title": "Race to the Finish",
+        "image": "./img/episode-posters/race-to-the-finish.png"
+      }
+    ]
+  }
+]
