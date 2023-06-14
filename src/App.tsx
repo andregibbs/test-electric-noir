@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TvShows } from './components/TVShows';
+import TvShows from './components/TVShows';
 import { TvShowsData, TvShow } from './types';
 import tvShowsJson from './data/season-data.json';
 import pricesJson from './data/season-pricing-data.json';
