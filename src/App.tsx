@@ -19,12 +19,7 @@ function App() {
       }
     );
 
-    const updatedData: TvShowsData = {
-      ...tvShowsJson,
-      tvShows: updatedTvShows,
-    };
-
-    setData(updatedData);
+    setData({ tvShows: updatedTvShows });
   }, []);
 
   return (

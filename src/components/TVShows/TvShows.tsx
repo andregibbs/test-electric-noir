@@ -1,5 +1,18 @@
 import React, { useState } from 'react';
 import { TvShowsData } from '../../types';
+import { 
+  ShowContainer, 
+  ShowTitle, 
+  ShowItem, 
+  ShowPiece, 
+  ShowImage, 
+  PriceContainer, 
+  EpisodeContainer, 
+  EpisodePiece, 
+  EpisodeTitle, 
+  EpisodeImage } 
+  from './ShowStyles';
+
 
 interface Props {
   data: TvShowsData;
@@ -12,15 +25,16 @@ const TvShows: React.FC<Props> = ({ data }) => {
     setSelectedCountry(event.target.value);
   };
 
-  const getShowPrice = (showId: number): number | undefined => {
+  const getShowPrice = (showId: number): string | undefined => {
     const show = data.tvShows.find((tvShow) => tvShow.id === showId);
-    return show?.prices?.[selectedCountry];
+    const price = show?.prices?.[selectedCountry];
+    return price ? `$${price.toFixed(2)}` : 'N/A';
   };
 
   return (
     <div>
       <div>
-        <label htmlFor="country">Select Country:</label>
+        <label htmlFor="country">Select Country:</label> 
         <select id="country" value={selectedCountry} onChange={handleCountryChange}>
           <option value="US">US</option>
           <option value="FR">FR</option>
@@ -31,29 +45,33 @@ const TvShows: React.FC<Props> = ({ data }) => {
         </select>
       </div>
 
+      
+      <ShowContainer>
       {data.tvShows.map((tvShow) => (
-        <div key={tvShow.id}>
-          <img src={tvShow.image} alt={tvShow.title} />
-          <h2>{tvShow.title}</h2>
+      
+        <ShowItem key={tvShow.id}>
+          <ShowPiece>
+          <ShowImage src={tvShow.image} alt={tvShow.title} />
+          <ShowTitle>{tvShow.title}</ShowTitle>
           {tvShow.prices && (
-            <div>
-              <ul>
-                <li>
-                  {selectedCountry}: {getShowPrice(tvShow.id)}
-                </li>
-              </ul>
+             <PriceContainer>
+             <div>
+                {getShowPrice(tvShow.id)}
             </div>
+            </PriceContainer>
           )}
-          <ul>
+          </ShowPiece>
+         <EpisodeContainer>
             {tvShow.episodes.map((episode) => (
-              <li key={episode.id}>
-                <img src={episode.image} alt={episode.title} /> 
-                <h3>{episode.title}</h3>
-              </li>
+              <EpisodePiece key={episode.id}>
+                <EpisodeImage src={episode.image} alt={episode.title} />
+                <EpisodeTitle>{episode.title}</EpisodeTitle>
+              </EpisodePiece>
             ))}
-          </ul>
-        </div>
+          </EpisodeContainer>
+        </ShowItem>
       ))}
+    </ShowContainer>
     </div>
   );
 };
