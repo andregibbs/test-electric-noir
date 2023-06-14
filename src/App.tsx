@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import TvShows from './TvShows';
+import { TvShows } from './components/TVShows';
 import { TvShowsData, TvShow } from './types';
 import tvShowsJson from './data/season-data.json';
 import pricesJson from './data/season-pricing-data.json';
@@ -14,7 +14,7 @@ function App() {
           (item: { id: number }) => item.id === tvShow.id
         );
         return matchingPrice
-          ? { ...tvShow, Prices: matchingPrice.prices }
+          ? { ...tvShow, prices: matchingPrice.prices }
           : tvShow;
       }
     );

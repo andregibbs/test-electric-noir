@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TvShowsData } from './types';
+import { TvShowsData } from '../../types';
 
 interface Props {
   data: TvShowsData;

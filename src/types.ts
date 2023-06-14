@@ -16,3 +16,7 @@ export interface TvShow {
 export interface TvShowsData {
   tvShows: TvShow[];
 }
+
+export interface TestData {
+  tvShows: TvShowsData;
+}
