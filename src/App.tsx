@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import TvShows from './components/TVShows';
-import { TvShowsData, TvShow } from './types';
+import { TvShow, TVShowWithPrices } from './types';
 import tvShowsJson from './data/season-data.json';
 import pricesJson from './data/season-pricing-data.json';
 
 function App() {
-  const [data, setData] = useState<TvShowsData | null>(null);
+  const [data, setData] = useState<TVShowWithPrices[] | null>(null);
 
   useEffect(() => {
-    const updatedTvShows: TvShow[] = tvShowsJson.map(
+    const updatedTvShows: TVShowWithPrices[] = tvShowsJson.map(
       (tvShow: TvShow) => {
         const matchingPrice = pricesJson.find(
           (item: { id: number }) => item.id === tvShow.id
@@ -19,12 +19,7 @@ function App() {
       }
     );
 
-    const updatedData: TvShowsData = {
-      ...tvShowsJson,
-      tvShows: updatedTvShows,
-    };
-
-    setData(updatedData);
+    setData(updatedTvShows);
   }, []);
 
   return (

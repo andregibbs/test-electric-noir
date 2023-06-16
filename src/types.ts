@@ -10,13 +10,8 @@ export interface TvShow {
   title: string;
   image: string;
   episodes: Episode[];
-  prices?: Record<string, number>;
 }
 
-export interface TvShowsData {
-  tvShows: TvShow[];
-}
-
-export interface TestData {
-  tvShows: TvShowsData;
+export interface TVShowWithPrices extends TvShow {
+  prices?: Record<string, number> | null;
 }

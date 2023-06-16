@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { TvShowsData } from '../../types';
+import { Episode, TVShowWithPrices } from '../../types';
 
 interface Props {
-  data: TvShowsData;
+  data: TVShowWithPrices[];
 }
 
 const TvShows: React.FC<Props> = ({ data }) => {
@@ -11,11 +11,22 @@ const TvShows: React.FC<Props> = ({ data }) => {
   const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCountry(event.target.value);
   };
+  const formatCurrency = (value: number) => {
+    
+    const countryCode = {
+      US: {currencyCode : 'USD', localeCode: 'en-us'},
+      FR: {currencyCode : 'EUR', localeCode: 'fr-fr'},
+      CA: {currencyCode : 'CAD', localeCode: 'en-ca'},
+      DE: {currencyCode : 'EUR', localeCode: 'de-de'},
+      UK: {currencyCode : 'GBP', localeCode: 'en-gb'},
+      AU: {currencyCode : 'AUD', localeCode: 'en-au'}
+    }
 
-  const getShowPrice = (showId: number): number | undefined => {
-    const show = data.tvShows.find((tvShow) => tvShow.id === showId);
-    return show?.prices?.[selectedCountry];
-  };
+    return new Intl.NumberFormat(countryCode[selectedCountry].localeCode, 
+      { style: 'currency', currency: countryCode[selectedCountry].currencyCode }).format(value);
+  }
+
+  const getShowPrice = (data: any): any => formatCurrency(data?.[selectedCountry]);
 
   return (
     <div>
@@ -31,24 +42,24 @@ const TvShows: React.FC<Props> = ({ data }) => {
         </select>
       </div>
 
-      {data.tvShows.map((tvShow) => (
-        <div key={tvShow.id}>
-          <img src={tvShow.image} alt={tvShow.title} />
-          <h2>{tvShow.title}</h2>
-          {tvShow.prices && (
+      {data.map(({id, title, image, prices, episodes}:TVShowWithPrices ) => (
+        <div key={id}>
+          <img src={image} alt={title} />
+          <h2>{title}</h2>
+          {prices && (
             <div>
               <ul>
                 <li>
-                  {selectedCountry}: {getShowPrice(tvShow.id)}
+                  selected price:  { getShowPrice(prices)}
                 </li>
               </ul>
             </div>
           )}
           <ul>
-            {tvShow.episodes.map((episode) => (
-              <li key={episode.id}>
-                <img src={episode.image} alt={episode.title} /> 
-                <h3>{episode.title}</h3>
+            {episodes.map(({id, image, title}: Episode) => (
+              <li key={id}>
+                <img src={image} alt={title} /> 
+                <h3>{title}</h3>
               </li>
             ))}
           </ul>
